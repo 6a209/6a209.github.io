@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Picasso 源码分析 | 6a029</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Picasso 译： 毕加索
+项目地址
+使用
+显示图片
+1Picasso.with(context).load('http://i.imgur.com/DvpvklR.png').into(imageView);
+
+在Adapter 中使用
+12345678910@Override public void getView(int position, View convertView, ViewGr">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Picasso 源码分析">
+<meta property="og:url" content="http://6a209.com/2014/01/23/picasso/">
+<meta property="og:site_name" content="6a029">
+<meta property="og:description" content="Picasso 译： 毕加索
+项目地址
+使用
+显示图片
+1Picasso.with(context).load('http://i.imgur.com/DvpvklR.png').into(imageView);
+
+在Adapter 中使用
+12345678910@Override public void getView(int position, View convertView, ViewGr">
+<meta property="og:image" content="http://square.github.io/picasso/static/debug.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Picasso 源码分析">
+<meta name="twitter:description" content="Picasso 译： 毕加索
+项目地址
+使用
+显示图片
+1Picasso.with(context).load('http://i.imgur.com/DvpvklR.png').into(imageView);
+
+在Adapter 中使用
+12345678910@Override public void getView(int position, View convertView, ViewGr">
+
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+  <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<div class="profilepic">
+			<img src="https://avatars3.githubusercontent.com/u/688545?v=3&amp;s=460">
+		</div>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">6a209</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">keep coding &amp; walking</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/6a209" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="http://weibo.com/6a209" title="weibo">weibo</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud">
+						<a href="/tags/Android-View/" style="font-size: NaNpx;">Android View</a><a href="/tags/Android-开源库-图片缓存/" style="font-size: NaNpx;">Android 开源库 图片缓存</a><a href="/tags/Android-源码分析/" style="font-size: NaNpx;">Android 源码分析</a><a href="/tags/android-uri/" style="font-size: NaNpx;">android uri</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">奥巴马的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">卡卡的美丽传说</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">本泽马的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">吉格斯的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">习大大大不同</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">托蒂的博客</a>
+			        
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					我是谁，我从哪里来，我到哪里去？我就是我，是颜色不一样的吃货…
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay"></div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img src="https://avatars3.githubusercontent.com/u/688545?v=3&amp;s=460">
+			</div>
+
+			<hgroup>
+			  <h1 class="header-author"><a href="/">6a209</a></h1>
+			</hgroup>
+			
+			<p class="header-subtitle">keep coding &amp; walking</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/6a209" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/6a209" title="weibo">weibo</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <article id="post-picasso" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/01/23/picasso/" class="article-date">
+  	<time datetime="2014-01-22T16:00:00.000Z" itemprop="datePublished">1月 23 2014</time>
+</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android-开源库-图片缓存/">Android 开源库 图片缓存</a></li></ul>
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Picasso 源码分析
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="Picasso_译：_毕加索">Picasso 译： 毕加索</h3>
+<p><a href="https://github.com/square/picasso?source=c" target="_blank" rel="external">项目地址</a></p>
+<h5 id="使用">使用</h5>
+<p><strong>显示图片</strong></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Picasso.<span class="keyword">with</span>(context).load(<span class="string">"http://i.imgur.com/DvpvklR.png"</span>).<span class="keyword">into</span>(imageView);</div></pre></td></tr></table></figure>
+
+<p><strong>在Adapter 中使用</strong></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">@Override <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getView</span>(<span class="keyword">int</span> position, View convertView, ViewGroup parent) {</div><div class="line">  SquaredImageView view = (SquaredImageView) convertView;</div><div class="line">  <span class="keyword">if</span> (view == <span class="keyword">null</span>) {</div><div class="line">    view = <span class="keyword">new</span> SquaredImageView(context);</div><div class="line">  }</div><div class="line">  String url = getItem(position);</div><div class="line"></div><div class="line">  Picasso.with(context).load(url).<span class="keyword">into</span>(view);</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p><strong>使用更多属性</strong></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">Picasso.<span class="operator">with</span>(context)</div><div class="line">  .<span class="built_in">load</span>(url)</div><div class="line">  .resize(<span class="number">50</span>, <span class="number">50</span>)</div><div class="line">  .centerCrop()</div><div class="line">  .<span class="keyword">into</span>(imageView)</div><div class="line">  </div></pre></td></tr></table></figure>
+
+<p><strong>使用默认图，和出错后显示的图片</strong></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">Picasso.<span class="keyword">with</span>(context)</div><div class="line">    .load(url)</div><div class="line">    .placeholder(R.drawable.user_placeholder)</div><div class="line">    .<span class="keyword">error</span>(R.drawable.user_placeholder_error)</div><div class="line">    .<span class="keyword">into</span>(imageView);</div><div class="line">    </div></pre></td></tr></table></figure>
+
+<h5 id="一些有趣的地方">一些有趣的地方</h5>
+<a id="more"></a>
+
+<p><strong>调试模式</strong></p>
+<p>如果设置调试模式后，可以看到图片会的左上角会被标识出一个不同颜色的小三角形 分别代表是从内存取出，还是从文件取出，还是从网络取出， 可以在调试缓存的时候很方便的看到效果！ 效果如下图<br><img src="http://square.github.io/picasso/static/debug.png" alt="img"></p>
+<p><strong>fade 效果实现</strong></p>
+<p>之前我实现的fade 效果一直是然View做一个Fade 效果的动画来实现的，不过你会发现如果ImageView有一个背景做边框的话边框也会做fade动画，这效果看起来就不好了 Picasso中在PicassoDrawable 类中来实现fade 动画效果的</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="variable">@Override</span> public void draw(Canvas <span class="keyword">canvas</span>) {</div><div class="line">    <span class="keyword">if</span> (!animating) {</div><div class="line">      <span class="keyword">image</span>.draw(<span class="keyword">canvas</span>);</div><div class="line">    } <span class="keyword">else</span> {</div><div class="line">      <span class="keyword">float</span> normalized = (SystemClock.uptimeMillis() - startTimeMillis) / FADE_DURATION;</div><div class="line">      <span class="keyword">if</span> (normalized &gt;= <span class="number">1</span>f) {</div><div class="line">        animating = false;</div><div class="line">        placeholder = null;</div><div class="line">        <span class="keyword">image</span>.draw(<span class="keyword">canvas</span>);</div><div class="line">      } <span class="keyword">else</span> {</div><div class="line">        <span class="keyword">if</span> (placeholder != null) {</div><div class="line">          placeholder.draw(<span class="keyword">canvas</span>);</div><div class="line">        }</div><div class="line"></div><div class="line">        <span class="keyword">int</span> partialAlpha = (<span class="keyword">int</span>) (alpha * normalized);</div><div class="line">        <span class="keyword">image</span>.setAlpha(partialAlpha);</div><div class="line">        <span class="keyword">image</span>.draw(<span class="keyword">canvas</span>);</div><div class="line">        <span class="keyword">image</span>.setAlpha(alpha);</div><div class="line">        invalidateSelf();</div><div class="line">      }</div><div class="line">    }</div></pre></td></tr></table></figure>
+
+<p>其实很简单，这个PicassoDrawable 在绘制的时候，如果发现设置了动画，就根据动画间距时间获取算出alpha的一个百分比<br>如果百分比不等于1 就再次调用 invalidateSelf() 然后再次绘制 以此来达到fade效果; </p>
+<p>你会发现上面调试模式，其代码实现也是</p>
+<h4 id="源码分析">源码分析</h4>
+<p>首先你的明白，目前缓存库的一个共有主逻辑：图片获取流程是怎么样的其实很简单归结到一句话那就是 先从内存中获取图片，如果没有则从文件中获取，还是没有则从网络中获取，带着这个逻辑去看源码！</p>
+<h5 id="如何从Url获取图片">如何从Url获取图片</h5>
+<p>显示图片： Picasso.with(context).load(“<a href="http://i.imgur.com/DvpvklR.png&quot;).into(imageView" target="_blank" rel="external">http://i.imgur.com/DvpvklR.png&quot;).into(imageView</a>);</p>
+<p>Picasso load() 会构造一个 RequestCreator 对象， 然后调用into 方法</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">/**</div><div class="line"> * Asynchronously fulfills the request into the specified {@link ImageView}</div><div class="line"> * and invokes the target {@link Callback} if it's not {@code null}.</div><div class="line"> * &lt;p/&gt;</div><div class="line"> * &lt;em&gt;Note:&lt;/em&gt; The {@link Callback} param is a strong reference and will</div><div class="line"> * prevent your {@link android.app.Activity} or {@link android.app.Fragment}</div><div class="line"> * from being garbage collected. If you use this method, it is</div><div class="line"> * &lt;b&gt;strongly&lt;/b&gt; recommended you invoke an adjacent</div><div class="line"> * {@link Picasso<span class="comment">#cancelRequest(android.widget.ImageView)} call to prevent</span></div><div class="line"> * temporary leaking.</div><div class="line"> */</div><div class="line">public void into(ImageView target, Callback callback) {</div><div class="line">	if (target == null) {</div><div class="line">		throw new IllegalArgumentException(<span class="string">"Target must not be null."</span>);</div><div class="line">	}</div><div class="line"></div><div class="line">	if (!data.hasImage()) {</div><div class="line">		// 意外没设uri 或 resId</div><div class="line">		picasso.cancelRequest(target);</div><div class="line">		PicassoDrawable.setPlaceholder(target, placeholderResId,</div><div class="line">				placeholderDrawable);</div><div class="line">		return;</div><div class="line">	}</div><div class="line"></div><div class="line">	if (deferred) {</div><div class="line">		// 延迟加载</div><div class="line">		if (data.hasSize()) {</div><div class="line">			throw new IllegalStateException(</div><div class="line">					<span class="string">"Fit cannot be used with resize."</span>);</div><div class="line">		}</div><div class="line">		int measuredWidth = target.getMeasuredWidth();</div><div class="line">		int measuredHeight = target.getMeasuredHeight();</div><div class="line">		if (measuredWidth == 0 || measuredHeight == 0) {</div><div class="line">			PicassoDrawable.setPlaceholder(target, placeholderResId,</div><div class="line">					placeholderDrawable);</div><div class="line">			picasso.defer(target, new DeferredRequestCreator(this, target,</div><div class="line">					callback));</div><div class="line">			return;</div><div class="line">		}</div><div class="line">		data.resize(measuredWidth, measuredHeight);</div><div class="line">	}</div><div class="line"></div><div class="line">	Request finalData = picasso.transformRequest(data.build());</div><div class="line">	String requestKey = createKey(finalData);</div><div class="line"></div><div class="line">	if (!skipMemoryCache) {</div><div class="line">		// 不跳过内存 cache</div><div class="line">		Bitmap bitmap = picasso.quickMemoryCacheCheck(requestKey);</div><div class="line">		if (bitmap != null) {</div><div class="line">			picasso.cancelRequest(target);</div><div class="line">			PicassoDrawable.setBitmap(target, picasso.context, bitmap,</div><div class="line">					MEMORY, noFade, picasso.debugging);</div><div class="line">			if (callback != null) {</div><div class="line">				callback.onSuccess();</div><div class="line">			}</div><div class="line">			return;</div><div class="line">		}</div><div class="line">	}</div><div class="line">	// 设置占位符</div><div class="line">	PicassoDrawable.setPlaceholder(target, placeholderResId,</div><div class="line">			placeholderDrawable);</div><div class="line">	</div><div class="line">	Action action = new ImageViewAction(picasso, target, finalData,</div><div class="line">			skipMemoryCache, noFade, errorResId, errorDrawable, requestKey,</div><div class="line">			callback);</div><div class="line">			</div><div class="line">	//将action 进入请求队列</div><div class="line">	picasso.enqueueAndSubmit(action);</div><div class="line">}</div><div class="line">	</div></pre></td></tr></table></figure>
+
+<p>最后，如果没从内存中获取到图片，会将action 提交到请求队列中去 picasso.enqueueAndSubmit(action);</p>
+<p>最终会调用<br>    <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">void</span> submit(Action action) {</div><div class="line">	dispatcher.dispatchSubmit(action);</div><div class="line">}</div></pre></td></tr></table></figure></p>
+<p>Dispatcher 类算是Picasso的核心调度 所有的事件都是这个事件在派发</p>
+<p>我们在看看事件提交之后做什么</p>
+<p>代码是在 Dispatcher 的 performSubmit 方法中</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">void performSubmit(Action action) {</div><div class="line">	BitmapHunter hunter = hunterMap.get(action.getKey());</div><div class="line">	</div><div class="line">	if (hunter != null) {</div><div class="line">		// 已经有这个请求了</div><div class="line">		hunter.attach(action);</div><div class="line">		return;</div><div class="line">	}</div><div class="line"></div><div class="line">	if (service.isShutdown()) {</div><div class="line">		return;</div><div class="line">	}</div><div class="line">    // 还没有这个请求， 生成一个 根据uri 不同的scheme 生成不同的 BitmapHunter 对象</div><div class="line">	hunter = forRequest(context, action.getPicasso(), this, cache, stats,</div><div class="line">			action, downloader);</div><div class="line">	// 进入线程池执行这个 任务</div><div class="line">	hunter.future = service.submit(hunter);</div><div class="line">	hunterMap.put(action.getKey(), hunter);</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p>上面的代码 BitmapHunter 是实现一个Runable接口的对象，我们可以看看 </p>
+<p>BitmapHunter中 run方法都干了些什么！</p>
+<p>简单的说 就是先从内存获取， 没有就从文件缓存中获取，再没有就是从网络获取</p>
+<p>获取完了之后会往Dispatcher 发一个 dispatchComplete 的消息</p>
+<p>有趣的是 Dispatcher 收到信息后，并不是马上就给主线程发送图片获取完成消息， 而是将获取成功的消息放进一个list里面，同时判断消息循环中是不是已经有HUNTER_DELAY_NEXT_BATCH这个消息如果没有才发送，而且还给这个消息加了一个延时 相应代码如下：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">batch</span>(BitmapHunter hunter) {</div><div class="line">    <span class="keyword">if</span> (hunter.isCancelled()) {</div><div class="line">        <span class="keyword">return</span>;</div><div class="line">    }</div><div class="line">    batch.add(hunter);</div><div class="line">    <span class="keyword">if</span> (!handler.hasMessages(HUNTER_DELAY_NEXT_BATCH)) {</div><div class="line">        handler.sendEmptyMessageDelayed(HUNTER_DELAY_NEXT_BATCH,</div><div class="line">                BATCH_DELAY);</div><div class="line">    }</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p>批量传递应该是为了减少 跨线程传递的开销把， 不过加了个延迟 我没弄明白是为了什么；</p>
+<p>接着是 往主线程发获取成功的消息</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">void</span> performBatchComplete() {</div><div class="line">	List&lt;BitmapHunter&gt; <span class="keyword">copy</span> = <span class="keyword">new</span> ArrayList&lt;BitmapHunter&gt;(batch);</div><div class="line">	batch.clear();</div><div class="line">	mainThreadHandler.sendMessage(mainThreadHandler.obtainMessage(</div><div class="line">			HUNTER_BATCH_COMPLETE, <span class="keyword">copy</span>));</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p>主线程收到后， 将ImageViewAction 执行 complete 函数 将获取到的图片 设置到imageView上， 整个获取流程就是这样</p>
+<p>纵观整个流程 觉得 事件循环用的有点多， 但是整个流程非常清新!!!</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2014/11/13/ViewDragHelper 使用实例 swipebacklayout/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">&lt;</strong>
+      <div class="article-nav-title">
+        
+          ViewDragHelper 使用
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2013/12/05/FrameLayout源码/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Android FrameLayout 源码分析</div>
+      <strong class="article-nav-caption">&gt;</strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="picasso" data-title="Picasso 源码分析" data-url="http://6a209.com/2014/01/23/picasso/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2014 6a209
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+  <script src="/js/main.js" type="text/javascript"></script>
+
+
+  </div>
+</body>
+</html>
